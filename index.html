@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulse Shop - Telegram Accounts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/telegram-app--v1.png">
+</head>
+<body>
+    <!-- Фоновые анимации цветов -->
+    <div class="flower-bg">
+        <div class="flower flower1"></div>
+        <div class="flower flower2"></div>
+        <div class="flower flower3"></div>
+        <div class="flower flower4"></div>
+        <div class="flower flower5"></div>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fab fa-telegram"></i>
+                <span class="logo-text">IMPULSE <span class="logo-shop">SHOP</span></span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="#" class="nav-link" data-page="market"><i class="fas fa-store"></i> Маркет</a></li>
+                <li><a href="#" class="nav-link" data-page="purchases"><i class="fas fa-shopping-bag"></i> Мои покупки</a></li>
+                <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-user"></i> Профиль</a></li>
+                <li class="nav-cart">
+                    <a href="#" class="nav-link" data-page="cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+                <li class="auth-buttons">
+                    <button id="loginBtn" class="btn-login"><i class="fas fa-sign-in-alt"></i> Войти</button>
+                    <button id="registerBtn" class="btn-register"><i class="fas fa-user-plus"></i> Регистрация</button>
+                    <button id="logoutBtn" class="btn-logout hidden"><i class="fas fa-sign-out-alt"></i> Выйти</button>
+                </li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Модальное окно регистрации/входа -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-circle"></i> <span id="modalTitle">Вход в аккаунт</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="loginEmail" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword"><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-sign-in-alt"></i> Войти</button>
+                </form>
+                
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="registerUsername"><i class="fas fa-user"></i> Имя пользователя</label>
+                        <input type="text" id="registerUsername" required placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="registerEmail" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword"><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword"><i class="fas fa-lock"></i> Подтвердите пароль</label>
+                        <input type="password" id="confirmPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-user-plus"></i> Зарегистрироваться</button>
+                </form>
+                
+                <div class="auth-message" id="authMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Главная страница -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title animate-fade-up">
+                        <i class="fab fa-telegram"></i> IMPULSE SHOP
+                    </h1>
+                    <p class="hero-subtitle animate-fade-up-delay">
+                        <i class="fas fa-shield-alt"></i> Магазин, которому можно доверять
+                    </p>
+                    <p class="hero-description animate-fade-up-delay-2">
+                        Покупка и продажа Telegram-аккаунтов с гарантией безопасности.<br>
+                        Быстрая доставка, проверенные продавцы и круглосуточная поддержка.
+                    </p>
+                    <div class="hero-buttons animate-fade-up-delay-3">
+                        <button class="btn-primary" data-page="market">
+                            <i class="fas fa-shopping-cart"></i> Перейти в магазин
+                        </button>
+                        <button class="btn-secondary" id="learnMoreBtn">
+                            <i class="fas fa-info-circle"></i> Подробнее
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>10,000+</h3>
+                        <p>Довольных клиентов</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>2,500+</h3>
+                        <p>Проданных аккаунтов</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7</h3>
+                        <p>Поддержка</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок "Почему нам можно доверять?" -->
+            <section class="trust-section">
+                <h2 class="section-title animate-on-scroll">
+                    <i class="fas fa-question-circle"></i> Почему нам можно доверять?
+                </h2>
+                <div class="trust-grid">
+                    <div class="trust-card animate-on-scroll">
+                        <div class="trust-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Гарантия безопасности</h3>
+                        <p>Все аккаунты проходят проверку на безопасность. Гарантируем возврат средств при возникновении проблем.</p>
+                    </div>
+                    <div class="trust-card animate-on-scroll">
+                        <div class="trust-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Мгновенная доставка</h3>
+                        <p>Получите доступ к аккаунту сразу после оплаты. Автоматическая система доставки 24/7.</p>
+                    </div>
+                    <div class="trust-card animate-on-scroll">
+                        <div class="trust-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Поддержка 24/7</h3>
+                        <p>Наша команда поддержки всегда на связи. Решаем вопросы в течение 15 минут.</p>
+                    </div>
+                    <div class="trust-card animate-on-scroll">
+                        <div class="trust-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Безопасные платежи</h3>
+                        <p>Шифрование всех транзакций. Поддержка криптовалют, карт и электронных платежей.</p>
+                    </div>
+                    <div class="trust-card animate-on-scroll">
+                        <div class="trust-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Отзывы клиентов</h3>
+                        <p>Более 1000 положительных отзывов. Реальный рейтинг 4.9/5 на независимых площадках.</p>
+                    </div>
+                    <div class="trust-card animate-on-scroll">
+                        <div class="trust-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>3 года на рынке</h3>
+                        <p>Работаем с 2021 года. Стабильная репутация и тысячи успешных сделок.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Как это работает -->
+            <section class="how-it-works">
+                <h2 class="section-title animate-on-scroll">
+                    <i class="fas fa-cogs"></i> Как это работает?
+                </h2>
+                <div class="steps">
+                    <div class="step animate-on-scroll">
+                        <div class="step-number">1</div>
+                        <h3>Выберите аккаунт</h3>
+                        <p>Перейдите в маркет и выберите подходящий Telegram-аккаунт</p>
+                    </div>
+                    <div class="step animate-on-scroll">
+                        <div class="step-number">2</div>
+                        <h3>Быстрая оплата</h3>
+                        <p>Оплатите выбранный товар удобным способом</p>
+                    </div>
+                    <div class="step animate-on-scroll">
+                        <div class="step-number">3</div>
+                        <h3>Мгновенная доставка</h3>
+                        <p>Получите данные от аккаунта сразу после оплаты</p>
+                    </div>
+                    <div class="step animate-on-scroll">
+                        <div class="step-number">4</div>
+                        <h3>Наслаждайтесь</h3>
+                        <p>Используйте новый аккаунт для своих целей</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Маркет -->
+        <section id="market" class="page">
+            <div class="market-header">
+                <h2 class="section-title">
+                    <i class="fas fa-store"></i> Маркет Telegram-аккаунтов
+                </h2>
+                <div class="market-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Поиск аккаунтов...">
+                    </div>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">Все категории</option>
+                        <option value="premium">Премиум</option>
+                        <option value="business">Бизнес</option>
+                        <option value="personal">Личные</option>
+                        <option value="channel">Каналы</option>
+                    </select>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="new">Сначала новые</option>
+                        <option value="cheap">Сначала дешевые</option>
+                        <option value="expensive">Сначала дорогие</option>
+                        <option value="popular">Популярные</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="productsContainer">
+                <!-- Товары загружаются через JavaScript -->
+            </div>
+        </section>
+
+        <!-- Мои покупки -->
+        <section id="purchases" class="page">
+            <div class="purchases-header">
+                <h2 class="section-title">
+                    <i class="fas fa-shopping-bag"></i> Мои покупки
+                </h2>
+                <p class="section-subtitle">История ваших приобретений</p>
+            </div>
+            
+            <div class="purchases-container" id="purchasesContainer">
+                <div class="empty-state" id="emptyPurchases">
+                    <i class="fas fa-shopping-bag fa-3x"></i>
+                    <h3>У вас еще нет покупок</h3>
+                    <p>Перейдите в маркет, чтобы совершить первую покупку</p>
+                    <button class="btn-primary" data-page="market">
+                        <i class="fas fa-store"></i> Перейти в магазин
+                    </button>
+                </div>
+                <!-- Покупки загружаются через JavaScript -->
+            </div>
+        </section>
+
+        <!-- Корзина -->
+        <section id="cart" class="page">
+            <div class="cart-header">
+                <h2 class="section-title">
+                    <i class="fas fa-shopping-cart"></i> Корзина
+                </h2>
+            </div>
+            
+            <div class="cart-container" id="cartContainer">
+                <div class="empty-state" id="emptyCart">
+                    <i class="fas fa-shopping-cart fa-3x"></i>
+                    <h3>Корзина пуста</h3>
+                    <p>Добавьте товары из маркета, чтобы продолжить</p>
+                    <button class="btn-primary" data-page="market">
+                        <i class="fas fa-store"></i> Перейти в магазин
+                    </button>
+                </div>
+                <!-- Товары в корзине загружаются через JavaScript -->
+            </div>
+        </section>
+
+        <!-- Профиль -->
+        <section id="profile" class="page">
+            <div class="profile-header">
+                <h2 class="section-title">
+                    <i class="fas fa-user-circle"></i> Мой профиль
+                </h2>
+            </div>
+            
+            <div class="profile-container" id="profileContainer">
+                <div class="empty-state" id="profileNotLogged">
+                    <i class="fas fa-user-lock fa-3x"></i>
+                    <h3>Вы не авторизованы</h3>
+                    <p>Войдите или зарегистрируйтесь, чтобы просмотреть профиль</p>
+                    <div class="profile-buttons">
+                        <button class="btn-primary" id="profileLoginBtn">
+                            <i class="fas fa-sign-in-alt"></i> Войти
+                        </button>
+                        <button class="btn-secondary" id="profileRegisterBtn">
+                            <i class="fas fa-user-plus"></i> Регистрация
+                        </button>
+                    </div>
+                </div>
+                <!-- Профиль загружается через JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo">
+                    <i class="fab fa-telegram"></i>
+                    <span class="logo-text">IMPULSE <span class="logo-shop">SHOP</span></span>
+                </div>
+                <p class="footer-text">Магазин, которому можно доверять</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Магазин</h3>
+                <ul>
+                    <li><a href="#" data-page="market">Маркет</a></li>
+                    <li><a href="#" data-page="purchases">Мои покупки</a></li>
+                    <li><a href="#" data-page="profile">Профиль</a></li>
+                    <li><a href="#">Акции</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Правила использования</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Возврат средств</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-envelope"></i> support@impulse-shop.com</li>
+                    <li><i class="fas fa-clock"></i> Поддержка 24/7</li>
+                    <li><i class="fas fa-shield-alt"></i> Безопасные платежи</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Impulse Shop. Все права защищены.</p>
+            <p class="footer-note">Сайт предназначен только для легального использования</p>
+        </div>
+    </footer>
+
+    <!-- Уведомления -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Подключение скриптов -->
+    <script src="products.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
